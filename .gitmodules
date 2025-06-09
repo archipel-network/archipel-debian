@@ -1,0 +1,12 @@
+[submodule "archipel-core"]
+	path = archipel-core
+	url = https://github.com/archipel-network/archipel-core.git
+[submodule "archipel-ipbeacon"]
+	path = archipel-ipbeacon
+	url = https://github.com/archipel-network/archipel-ipbeacon.git
+[submodule "archipel-file-carrier"]
+	path = archipel-file-carrier
+	url = https://github.com/archipel-network/archipel-file-carrier.git
+[submodule "bundlecat"]
+	path = bundlecat
+	url = https://github.com/archipel-network/bundlecat.git
