@@ -34,6 +34,8 @@ When setup is finished you must be inside your new chroot and ready to build.
 
 Deb packages will be produced into `root/archipel-debian/target` of your chroot
 
+After building all packages required, run `collect-artifacts.sh` to collect all deb packages from all chroots folders into a local `target` folder
+
 ### Troubleshooting
 
 #### An error occurred during initial setup and I don't want to start from scratch
