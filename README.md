@@ -22,6 +22,10 @@ Build and start a chroot
 ./chroot.sh
 ```
 
+> NOTE: By default, the script will try to get Qemu static executable from current chroot architecture.
+> But on bookworm and earlier, Qemu executables are not named after system architecture and must be defined manually.
+> See "Troubleshooting" section to learn more.
+
 When setup is finished you must be inside your new chroot and ready to build.
 
 ```
@@ -29,3 +33,24 @@ When setup is finished you must be inside your new chroot and ready to build.
 ```
 
 Deb packages will be produced into `root/archipel-debian/target` of your chroot
+
+### Troubleshooting
+
+#### An error occurred during initial setup and I don't want to start from scratch
+
+Add environment variable `INITIAL_SETUP=true` to trigger apt and rust setup.
+
+```
+INITIAL_SETUP=true ./chroot.sh
+```
+
+#### `Qemu user executable named "qemu-armhf-static" not found`
+
+Make sure you have installed `qemu-user-static`.
+If you are on debian bookworm or earlier you must specify manually appropriate QEMU command to use as `QEMU` environment variable.
+Prefer "static" ones.
+
+
+```
+QEMU=qemu-arm-static ./chroot.sh armhf
+```

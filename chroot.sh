@@ -3,12 +3,19 @@
 set -e
 
 DEBIAN_DISTRIBUTION="stable"
-DEBIAN_ARCHITECTURE="$(dpkg-architecture --query DEB_HOST_ARCH)"
-#DEBIAN_ARCHITECTURE="armhf"
+HOST_ARCHITECTURE="$(dpkg-architecture --query DEB_HOST_ARCH)"
+DEBIAN_ARCHITECTURE="${1:-"$HOST_ARCHITECTURE"}"
 BASE_DIRECTORY="./chroot-$DEBIAN_DISTRIBUTION-$DEBIAN_ARCHITECTURE"
-QEMU="qemu-$DEBIAN_ARCHITECTURE-static"
+if [ "$HOST_ARCHITECTURE" != "$DEBIAN_ARCHITECTURE" ]; then
+    QEMU="${QEMU:-"qemu-$DEBIAN_ARCHITECTURE-static"}"
+fi
 
-INITIAL_SETUP="false"
+if [ "$QEMU" != "" ] && [ "$(which $QEMU)" == "" ]; then
+    echo "Qemu user executable named \"$QEMU\" not found"
+    exit 1;
+fi
+
+INITIAL_SETUP="${INITIAL_SETUP:-"false"}"
 
 if [ ! -d "$BASE_DIRECTORY" ]; then
     INITIAL_SETUP="true"
