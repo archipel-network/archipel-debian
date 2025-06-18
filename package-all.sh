@@ -3,7 +3,7 @@ set -e
 
 CARGO_EXTRA_ARGS="${CARGO_EXTRA_ARGS:-""}"
 CARGO_TARGET=${CARGO_TARGET:-$(rustup show | grep Default | cut -d':' -f2 | xargs)}
-CARGO_TARGET_DIR="${CARGO_TARGET_DIR:-"."}"
+CARGO_TARGET_DIR="${CARGO_TARGET_DIR:-"$CARGO_TARGET"}"
 CARGO_MULTIARCH="${CARGO_MULTIARCH:-"none"}"
 ARCH_NAME="${ARCH_NAME:-"$(uname -m)"}"
 OUT_DIR="${OUT_DIR:-"./target/$ARCH_NAME"}"
