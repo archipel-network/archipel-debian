@@ -28,3 +28,9 @@ echo "Build File Carrier"
 (cd ./archipel-file-carrier && cargo deb --multiarch "$CARGO_MULTIARCH" --target $CARGO_TARGET --profile release -p archipelfc -- $CARGO_EXTRA_ARGS)
 cp -v archipel-file-carrier/target/$CARGO_TARGET_DIR/debian/*.deb "$OUT_DIR"
 echo ""
+
+echo "Build Ipbeacon"
+(cd ./archipel-ipbeacon && cargo clean)
+(cd ./archipel-ipbeacon && cargo deb --multiarch "$CARGO_MULTIARCH" --target $CARGO_TARGET --profile release -- $CARGO_EXTRA_ARGS)
+cp -v archipel-ipbeacon/target/$CARGO_TARGET_DIR/debian/*.deb "$OUT_DIR"
+echo ""
